@@ -13,16 +13,9 @@ import { getUserData, getOutbox } from '@/lib/api'
 
 import styles from './page.module.scss'
 
-// `dynamic`に渡す関数をあらかじめ定義する
-const importFunction = () => import('react-p5').then((mod) => mod.default)
-// とりあえずSketchが存在するように
-let Sketch: any = null
-// `window`が存在する場合はp5が使えます
-// さらにインポート時にSSR（サーバーサイドレンダリング）をfalseにすることで
-// インポートされたSketchがクライアント側でのみ使うことを宣言
-if (typeof window !== 'undefined') {
-  Sketch = dynamic(importFunction, { ssr: false })
-}
+const P5Sketch = dynamic(() => import('./Sketch').then((mod) => mod.default), {
+  ssr: false,
+})
 
 const drawPoint = [
 	["", "", "", "","y", "", "", "", ""],
@@ -143,6 +136,7 @@ export default function Home() {
       {(typeof window !== 'undefined' && userName != "" && !nowLoading) && (
         <Sketch setup={setup} draw={draw} />
       )}
+      <P5Sketch />
     </main>
   )
 }
