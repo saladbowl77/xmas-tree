@@ -9,13 +9,13 @@ interface ComponentProps {
 let x = 50;
 const y = 50;
   
-const Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
+const Canvas = (): JSX.Element => {
   // See annotations in JS for more information
-  const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(500, 500).parent(canvasParentRef);
+  const setup = (p5: any) => {
+    p5.createCanvas(500, 500);
   };
 
-  const draw = (p5: p5Types) => {
+  const draw = (p5: any) => {
     p5.background(0);
     p5.ellipse(x, y, 70, 70);
     x++;
