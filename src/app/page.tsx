@@ -129,7 +129,7 @@ export default function Home() {
       <section className={clsx(styles.inputSection, userName == "" ? styles.max : styles.min )}>
         <h1 className={styles.inputSectionTitle}>ActivityPubツリー</h1>
         <div className={styles.inputSectionForm}>
-          <input className={styles.inputSectionFormText} type="text" value={userName} onChange={(e) => setUsername(e.target.value)} />
+          <input className={styles.inputSectionFormText} type="text" value={userName} onChange={(e) => console.log(e.target.value)} />
           <button className={styles.inputSectionFormButton} onClick={() => {getData()}}>検索</button>
         </div>
       </section>
