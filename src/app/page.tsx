@@ -55,6 +55,11 @@ export default function Home() {
     [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
   ]);
 
+  const handleInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setUsername(e.target.value)
+  }
+
   const getData = async () => {
     setNowLoading(true);
     const userData = await getUserData({ url: userName });
@@ -129,7 +134,7 @@ export default function Home() {
       <section className={clsx(styles.inputSection, userName == "" ? styles.max : styles.min )}>
         <h1 className={styles.inputSectionTitle}>ActivityPubツリー</h1>
         <div className={styles.inputSectionForm}>
-          <input className={styles.inputSectionFormText} type="text" value={String(userName)} onChange={(e) => {console.log(e.target.value); setUsername(e.target.value);}} />
+          <input className={styles.inputSectionFormText} type="text" value={String(userName)} onInput={handleInputText} />
           <button className={styles.inputSectionFormButton} onClick={() => {getData()}}>検索</button>
         </div>
       </section>
