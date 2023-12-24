@@ -1,0 +1,64 @@
+.inputSection {
+    width: calc(100lvw - 30px);
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+    transition: all 1s ease-in-out;
+
+    &Title {
+        font-size: 25px;
+        line-height: 30px;
+        font-weight: 700;
+        margin: 10px;
+    }
+
+    &Form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &Text[type="text"] {
+            border: 1px solid #121212;
+            border-radius: 999999px;
+            width: calc(100lvw - 30px - 80px - 20px - 2px);
+            padding: 5px 10px;
+            line-height: 20px;
+            font-size: 16px;
+        }
+        &Button {
+            border-radius: 999999px;
+            border: 1px solid #121212;
+            width: 60px;
+            height: 32px;
+            margin-left: 10px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 16px;
+        }
+    }
+}
+
+.max {height: calc(100lvh - 20px);}
+.min {height: 82px;}
+
+
+.loadingCircle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #fb5b53;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin .5s linear 0s infinite;
+}
+@keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to{
+      transform: rotate(359deg);
+    }
+}
