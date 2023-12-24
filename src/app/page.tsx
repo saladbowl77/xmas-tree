@@ -2,7 +2,6 @@
 
 export const runtime = 'edge';
 
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import React, {useState} from "react";
 
