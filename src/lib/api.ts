@@ -1,17 +1,35 @@
 import axios from "axios";
 
 type userDataProps = {
-    site: string
-    id: string
+    url: string
 }
 
-export const getUserData = async ({ site, id }: userDataProps): Promise<any> => {
-    const url = (() => {
-        switch (site) {
-            case "misskey": return "https://misskey.io/@";
-            default : throw Error("You don't have site name");
-        }
-    })();
-    const response = await axios.get(url + id, { headers: { Accept: 'application/activity+json'} });
+export const getUserData = async ({ url }: userDataProps): Promise<any> => {
+    const response = await axios.get(url, { headers: { Accept: 'application/activity+json'} })
     return response
+};
+
+type outboxProps = {
+    url: string
+}
+
+export const getOutbox = async ({ url }: outboxProps): Promise<any> => {
+    const resList = await axios.get(url, { headers: { Accept: 'application/activity+json'} })
+    let contentUrl = resList.data.first;
+    let items:any = []
+    getItems: while (true) {
+        const resItems = await axios.get(contentUrl, { headers: { Accept: 'application/activity+json'} })
+        console.log(resItems.data.orderedItems)
+        for (const item of resItems.data.orderedItems) {
+            if(item.type != "Create") continue;
+            if (
+                !(new Date("2023-12-23T15:00:00Z") < new Date(item.published))
+            ) break getItems;
+            if (new Date(item.published) < new Date("2023-12-25T14:59:59Z")) items.push(item.object);
+        }
+        if ('next' in resItems.data) contentUrl = resItems.data.next;
+        else break getItems;
+    }
+    console.log(items)
+    return items
 };
