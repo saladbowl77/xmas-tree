@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    productionBrowserSourceMaps: true,
-    swcMinify: false,
-}
+const nextConfig = {}
 
 module.exports = nextConfig
