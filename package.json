@@ -17,6 +17,7 @@
     "react-p5": "^1.4.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.8.2",
     "@types/node": "^20",
     "@types/p5": "^1.7.6",
     "@types/react": "^18",
