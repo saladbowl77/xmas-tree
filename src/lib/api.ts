@@ -8,6 +8,7 @@ type userDataProps = {
 
 export const getUserData = async ({ url }: userDataProps): Promise<any> => {
     const response = await axios.get(url, { headers: { Accept: 'application/activity+json'} })
+    console.log(response)
     return response
 };
 
